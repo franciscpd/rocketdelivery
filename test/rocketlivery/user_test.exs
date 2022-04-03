@@ -4,17 +4,11 @@ defmodule Rocketlivery.UserTest do
   alias Ecto.Changeset
   alias Rocketlivery.User
 
+  import Rocketlivery.Factory
+
   describe "changeset/1" do
     test "when all params are valid, returns a valid changeset" do
-      params = %{
-        age: 26,
-        address: "Rua Canto do Vaqueiro, 943",
-        cep: "56317160",
-        cpf: "86000376545",
-        email: "beneditomarcoscavalcanti@vasconcelosdias.com",
-        name: "Benedito Marcos Enrico Cavalcanti",
-        password: "123456"
-      }
+      params = build(:user_params)
 
       response = User.changeset(params)
 
@@ -25,15 +19,7 @@ defmodule Rocketlivery.UserTest do
     end
 
     test "when there are some error, returns an invalid changeset" do
-      params = %{
-        age: 15,
-        address: "Rua Canto do Vaqueiro, 943",
-        cep: "56317160",
-        cpf: "86000376545",
-        email: "beneditomarcoscavalcanti@vasconcelosdias.com",
-        name: "Benedito Marcos Enrico Cavalcanti",
-        password: "123"
-      }
+      params = build(:user_params, %{age: 15, password: "123"})
 
       response = User.changeset(params)
 
@@ -48,15 +34,7 @@ defmodule Rocketlivery.UserTest do
 
   describe "changeset/2" do
     test "when updating a changeset, returns a valid changeset with the given changes" do
-      params = %{
-        age: 26,
-        address: "Rua Canto do Vaqueiro, 943",
-        cep: "56317160",
-        cpf: "86000376545",
-        email: "beneditomarcoscavalcanti@vasconcelosdias.com",
-        name: "Benedito Marcos Enrico Cavalcanti",
-        password: "123456"
-      }
+      params = build(:user_params)
 
       update_params = %{name: "Francisross Soares de Oliveira"}
 
@@ -72,15 +50,7 @@ defmodule Rocketlivery.UserTest do
     end
 
     test "when there are some error, returns an invalid changeset" do
-      params = %{
-        age: 26,
-        address: "Rua Canto do Vaqueiro, 943",
-        cep: "56317160",
-        cpf: "86000376545",
-        email: "beneditomarcoscavalcanti@vasconcelosdias.com",
-        name: "Benedito Marcos Enrico Cavalcanti",
-        password: "123456"
-      }
+      params = build(:user_params)
 
       update_params = %{cep: "12345"}
 
