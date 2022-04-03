@@ -8,6 +8,7 @@ defmodule Rocketlivery.User do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:age, :address, :name, :cpf, :email, :password, :cep]
+  @update_params @required_params -- [:password]
 
   @derive {Jason.Encoder,
            only: [:id, :age, :name, :email, :cpf, :address, :cep, :inserted_at, :updated_at]}
@@ -27,8 +28,18 @@ defmodule Rocketlivery.User do
 
   def changeset(params) do
     %__MODULE__{}
+    |> call_changeset(params, @required_params)
+  end
+
+  def changeset(struct, params) do
+    struct
+    |> call_changeset(params, @update_params)
+  end
+
+  defp call_changeset(struct, params, required) do
+    struct
     |> cast(params, @required_params)
-    |> validate_required(@required_params)
+    |> validate_required(required)
     |> validate_length(:password, min: 6)
     |> validate_length(:cpf, is: 11)
     |> validate_length(:cep, is: 8)
