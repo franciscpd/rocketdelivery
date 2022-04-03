@@ -9,6 +9,9 @@ defmodule Rocketlivery.User do
 
   @required_params [:age, :address, :name, :cpf, :email, :password, :cep]
 
+  @derive {Jason.Encoder,
+           only: [:id, :age, :name, :email, :cpf, :address, :cep, :inserted_at, :updated_at]}
+
   schema "users" do
     field :age, :integer
     field :address, :string

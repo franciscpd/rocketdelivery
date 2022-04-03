@@ -9,6 +9,8 @@ defmodule RocketliveryWeb.Router do
     pipe_through :api
 
     get "/", WelcomeController, :index
+
+    resources "/users", UsersController, except: [:new, :edit]
   end
 
   # Enables the Swoosh mailbox preview in development.
