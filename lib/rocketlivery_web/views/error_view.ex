@@ -5,7 +5,7 @@ defmodule RocketliveryWeb.ErrorView do
 
   import Ecto.Changeset, only: [traverse_errors: 2]
 
-  def render("400.json", %{result: %Changeset{} = changeset}) do
+  def render("error.json", %{result: %Changeset{} = changeset}) do
     %{message: translate_errors(changeset)}
   end
 
