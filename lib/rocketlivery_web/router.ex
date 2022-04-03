@@ -7,6 +7,8 @@ defmodule RocketliveryWeb.Router do
 
   scope "/api", RocketliveryWeb do
     pipe_through :api
+
+    get "/", WelcomeController, :index
   end
 
   # Enables the Swoosh mailbox preview in development.
