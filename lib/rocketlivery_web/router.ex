@@ -13,6 +13,7 @@ defmodule RocketliveryWeb.Router do
 
     get "/", WelcomeController, :index
 
+    resources "/items", ItemsController, only: [:create]
     resources "/users", UsersController, except: [:new, :edit]
   end
 
