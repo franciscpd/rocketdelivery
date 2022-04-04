@@ -33,6 +33,8 @@ config :rocketlivery, Rocketlivery.Mailer, adapter: Swoosh.Adapters.Local
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
+config :tesla, adapter: Tesla.Adapter.Hackney
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
