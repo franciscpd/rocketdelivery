@@ -2,6 +2,7 @@ defmodule Rocketlivery.User do
   use Ecto.Schema
 
   alias Ecto.Changeset
+  alias Rocketlivery.Order
 
   import Ecto.Changeset
 
@@ -22,6 +23,8 @@ defmodule Rocketlivery.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :cep, :string
+
+    has_many :orders, Order
 
     timestamps()
   end

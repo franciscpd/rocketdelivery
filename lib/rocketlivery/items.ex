@@ -2,6 +2,7 @@ defmodule Rocketlivery.Item do
   use Ecto.Schema
 
   alias Ecto.Enum
+  alias Rocketlivery.Order
 
   import Ecto.Changeset
 
@@ -18,6 +19,8 @@ defmodule Rocketlivery.Item do
     field :description, :string
     field :price, :decimal
     field :photo, :string
+
+    many_to_many :orders, Order, join_through: "orders_items"
 
     timestamps()
   end
