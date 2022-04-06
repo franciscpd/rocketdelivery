@@ -3,6 +3,8 @@ defmodule RocketliveryWeb.UsersControllerTest do
 
   alias Rocketlivery.ViaCep.ClientMock
 
+  alias RocketliveryWeb.Auth.Guardian
+
   import Mox
   import Rocketlivery.Factory
 
@@ -67,9 +69,18 @@ defmodule RocketliveryWeb.UsersControllerTest do
   end
 
   describe "delete/2" do
+    setup %{conn: conn} do
+      user = insert(:user)
+
+      {:ok, token, _claims} = Guardian.encode_and_sign(user)
+
+      conn = put_req_header(conn, "authorization", "Bearer #{token}")
+
+      {:ok, conn: conn}
+    end
+
     test "when there is a user with the given id, deletes the user", %{conn: conn} do
       id = "aaee3d27-f528-488c-a353-83bbe5b02436"
-      insert(:user)
 
       response =
         conn
