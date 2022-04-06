@@ -10,6 +10,8 @@ import Config
 config :rocketlivery,
   ecto_repos: [Rocketlivery.Repo]
 
+config :rocketlivery, Rocketlivery.Users.Create, via_cep_adapter: Rocketlivery.ViaCep.Client
+
 config :rocketlivery, Rocketlivery.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]

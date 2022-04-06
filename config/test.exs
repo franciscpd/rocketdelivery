@@ -1,10 +1,7 @@
 import Config
 
-# Configure your database
-#
-# The MIX_TEST_PARTITION environment variable can be used
-# to provide built-in test partitioning in CI environment.
-# Run `mix help test` for more information.
+config :rocketlivery, Rocketlivery.Users.Create, via_cep_adapter: Rocketlivery.ViaCep.ClientMock
+
 config :rocketlivery, Rocketlivery.Repo,
   username: "postgres",
   password: "postgres",
@@ -13,8 +10,6 @@ config :rocketlivery, Rocketlivery.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
-# We don't run a server during test. If one is required,
-# you can enable the server option below.
 config :rocketlivery, RocketliveryWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "KcD1GNW/0qFA0QTekQLtOJnyd/1bbEp0Gq8hjI/9n4ShF2Zu8Wq5uSkQWKoVxYl5",
