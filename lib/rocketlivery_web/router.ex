@@ -8,21 +8,27 @@ defmodule RocketliveryWeb.Router do
     plug UUIDChecker
   end
 
+  pipeline :auth do
+    plug RocketliveryWeb.Auth.Pipeline
+  end
+
+  scope "/api", RocketliveryWeb do
+    pipe_through [:api, :auth]
+
+    resources "/items", ItemsController, only: [:create]
+    resources "/orders", OrdersController, only: [:create]
+    resources "/users", UsersController, except: [:new, :edit, :create]
+  end
+
   scope "/api", RocketliveryWeb do
     pipe_through :api
 
     get "/", WelcomeController, :index
 
-    resources "/items", ItemsController, only: [:create]
-    resources "/orders", OrdersController, only: [:create]
     resources "/sessions", SessionsController, only: [:create]
-    resources "/users", UsersController, except: [:new, :edit]
+    resources "/users", UsersController, only: [:create]
   end
 
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
       pipe_through [:fetch_session, :protect_from_forgery]
