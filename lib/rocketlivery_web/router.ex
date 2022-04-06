@@ -15,6 +15,7 @@ defmodule RocketliveryWeb.Router do
 
     resources "/items", ItemsController, only: [:create]
     resources "/orders", OrdersController, only: [:create]
+    resources "/sessions", SessionsController, only: [:create]
     resources "/users", UsersController, except: [:new, :edit]
   end
 

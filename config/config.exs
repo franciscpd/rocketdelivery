@@ -12,6 +12,10 @@ config :rocketlivery,
 
 config :rocketlivery, Rocketlivery.Users.Create, via_cep_adapter: Rocketlivery.ViaCep.Client
 
+config :rocketlivery, RocketliveryWeb.Auth.Guardian,
+  issuer: "rocketlivery",
+  secret_key: "SQL7dyF82NJLp+f87IdgRh9/KdwwQTWE6z9Lpzov0Nzfe9MWz/g8wa8q8IxcwTyg"
+
 config :rocketlivery, Rocketlivery.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
