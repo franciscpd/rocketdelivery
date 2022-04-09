@@ -15,9 +15,9 @@ defmodule Rocketlivery.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Rocketlivery.PubSub},
       # Start the Endpoint (http/https)
-      RocketliveryWeb.Endpoint
-      # Start a worker by calling: Rocketlivery.Worker.start_link(arg)
-      # {Rocketlivery.Worker, arg}
+      RocketliveryWeb.Endpoint,
+      # Start the ReportRunner
+      Rocketlivery.Orders.ReportRunner
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
