@@ -55,7 +55,7 @@ jobs:
       - name: Run codecov script
         run: bash <(curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov)
         env:
-          CODECOV_TOKEN: ${{ serects.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Install dependencies
         run: mix deps.get
