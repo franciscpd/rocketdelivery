@@ -1,7 +1,6 @@
 # Rocketlivery
 
 [![Elixir CI](https://github.com/franciscpd/rocketdelivery/actions/workflows/elixir.yml/badge.svg)](https://github.com/franciscpd/rocketdelivery/actions/workflows/elixir.yml)
-
 [![codecov](https://codecov.io/gh/franciscpd/rocketdelivery/branch/main/graph/badge.svg?token=1TS927HWF4)](https://codecov.io/gh/franciscpd/rocketdelivery)
 
 To start your Phoenix server:
