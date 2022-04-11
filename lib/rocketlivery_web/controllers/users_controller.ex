@@ -7,9 +7,11 @@ defmodule RocketliveryWeb.UsersController do
   action_fallback FallbackController
 
   def index(conn, _params) do
-    conn
-    |> put_status(:ok)
-    |> render("index.json", users: Rocketlivery.get_all_users())
+    with {:ok, users} <- Rocketlivery.get_all_users() do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", users: users)
+    end
   end
 
   def create(conn, params) do

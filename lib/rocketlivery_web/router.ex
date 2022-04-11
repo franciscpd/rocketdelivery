@@ -5,6 +5,9 @@ defmodule RocketliveryWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :uuid_checker do
     plug UUIDChecker
   end
 
@@ -13,7 +16,7 @@ defmodule RocketliveryWeb.Router do
   end
 
   scope "/api", RocketliveryWeb do
-    pipe_through [:api, :auth]
+    pipe_through [:api, :uuid_checker, :auth]
 
     resources "/items", ItemsController, only: [:create]
     resources "/orders", OrdersController, only: [:create]
@@ -21,12 +24,22 @@ defmodule RocketliveryWeb.Router do
   end
 
   scope "/api", RocketliveryWeb do
-    pipe_through :api
+    pipe_through [:api, :uuid_checker]
 
     get "/", WelcomeController, :index
 
     resources "/sessions", SessionsController, only: [:create]
     resources "/users", UsersController, only: [:create]
+  end
+
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: RocketliveryWeb.Graphql.Schema
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: RocketliveryWeb.Graphql.Schema,
+      interface: :playground
   end
 
   if Mix.env() == :dev do
