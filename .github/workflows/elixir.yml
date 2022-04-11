@@ -70,7 +70,7 @@ jobs:
   deploy:
     name: Deploy on gigalixir
     needs: build
-    if: github.ref == 'refs/heads/main' && "!contains(github.event.head_commit.message , '[skip ci]')"
+    if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message , '[skip ci]')
 
     runs-on: ubuntu-latest
 
