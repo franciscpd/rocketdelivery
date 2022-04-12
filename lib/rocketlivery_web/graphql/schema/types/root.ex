@@ -38,4 +38,14 @@ defmodule RocketliveryWeb.Graphql.Schema.Types.Root do
       resolve &UsersResolver.delete/2
     end
   end
+
+  object :root_subscription do
+    field :new_user, type: :user do
+      config fn _args, _info ->
+        {:ok, topic: "new_user_topic"}
+      end
+
+      trigger :create_user, topic: fn _ -> ["new_user_topic"] end
+    end
+  end
 end

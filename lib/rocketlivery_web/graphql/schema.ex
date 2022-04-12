@@ -13,6 +13,10 @@ defmodule RocketliveryWeb.Graphql.Schema do
     import_fields :root_mutation
   end
 
+  subscription do
+    import_fields :root_subscription
+  end
+
   def middleware(middleware, _field, %{identifier: type}) when type in [:query, :mutation] do
     middleware ++ [ErrorHandler]
   end

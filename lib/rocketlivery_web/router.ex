@@ -39,6 +39,7 @@ defmodule RocketliveryWeb.Router do
 
     forward "/graphiql", Absinthe.Plug.GraphiQL,
       schema: RocketliveryWeb.Graphql.Schema,
+      socket: RocketliveryWeb.Socket,
       interface: :playground
   end
 

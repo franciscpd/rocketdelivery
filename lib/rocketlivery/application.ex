@@ -17,7 +17,8 @@ defmodule Rocketlivery.Application do
       # Start the Endpoint (http/https)
       RocketliveryWeb.Endpoint,
       # Start the ReportRunner
-      Rocketlivery.Orders.ReportRunner
+      Rocketlivery.Orders.ReportRunner,
+      {Absinthe.Subscription, RocketliveryWeb.Endpoint}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
